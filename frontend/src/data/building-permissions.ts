@@ -1,0 +1,52 @@
+import { BuildingPermissionRecord } from "../types/records";
+
+export const MOCK_BUILDING_PERMISSIONS: BuildingPermissionRecord[] = [
+  {
+    permission_id: "BP-MCG-2023-0182",
+    ulpin: "IN-HR-GGM-KDP-0101-0000",
+    application_number: "BP-APP-2023-9941",
+    authority: "Municipal Corporation of Gurugram (MCG)",
+    approval_status: "APPROVED",
+    building_type: "Residential Independent Floors (Stilt + 4 Floors)",
+    approved_far: 1.75,
+    approved_area_sq_meters: 1450.0,
+    remarks: "Sanctioned with mandatory rainwater harvesting and solar water heating compliance.",
+    permission_date: "2023-08-22T00:00:00Z",
+    expiry_date: "2028-08-21T00:00:00Z",
+  },
+  {
+    permission_id: "BP-MCG-2021-0419",
+    ulpin: "IN-HR-GGM-KDP-0102-0000",
+    application_number: "BP-APP-2021-3201",
+    authority: "Municipal Corporation of Gurugram (MCG)",
+    approval_status: "APPROVED",
+    building_type: "Commercial Office Complex (Basement + G + 3)",
+    approved_far: 2.0,
+    approved_area_sq_meters: 2200.0,
+    remarks: "Occupancy Certificate (OC) issued following fire safety and lift inspection.",
+    permission_date: "2021-05-14T00:00:00Z",
+    expiry_date: "2026-05-13T00:00:00Z",
+  },
+  {
+    permission_id: "BP-MCG-2024-PEND-09",
+    ulpin: "IN-HR-GGM-KDP-0103-0000",
+    application_number: "BP-APP-2024-1102",
+    authority: "Municipal Corporation of Gurugram (MCG)",
+    approval_status: "PENDING",
+    building_type: "Residential Villa (Ground + 2 Floors)",
+    approved_far: 1.5,
+    approved_area_sq_meters: 1200.0,
+    remarks: "Scrutiny of structural drawings underway by MCG Engineering Cell.",
+    permission_date: "2024-02-10T00:00:00Z",
+  },
+  {
+    permission_id: "BP-MCG-2024-REJ-01",
+    ulpin: "IN-HR-GGM-KDP-0104-0000",
+    application_number: "BP-APP-2024-0045",
+    authority: "Municipal Corporation of Gurugram (MCG)",
+    approval_status: "REJECTED",
+    building_type: "Commercial Storage Shed",
+    remarks: "REJECTED: Active civil court injunction stay order (REV/COURT/SOHNA/2024/771). Building permits cannot be granted under freeze status.",
+    permission_date: "2024-03-20T00:00:00Z",
+  }
+];

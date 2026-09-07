@@ -1,114 +1,151 @@
 # 🇮🇳 Bhu-Rail (भू-रेल)
-### Land Digital Public Infrastructure (DPI) for India
+### Integrated GIS-based Digital Public Infrastructure for Land Governance
 
 > *"We are not building a Land Management App. We are building a Land Digital Public Infrastructure (DPI) that other apps, government departments, banks, courts, registries, and citizens can plug into."*
 
 ---
 
-## 🏛️ The Core Paradigm: Land UPI
+## 🏛️ Platform Overview & Architecture
 
-| Traditional Land Portals (Silos) | Bhu-Rail: Land DPI Rail |
-| :--- | :--- |
-| Fragmented State DBs (Jamabandi, Bhoomi, Dharani) | Canonical Digital Land Asset Model |
-| Isolated PDF RoRs & Sale Deeds | Machine-readable **Property Passport** & Open APIs |
-| Manual clearance from 5 departments | **1-Click Land UPI Title Verification** for Banks & FinTechs |
-| Paper-based court stays easily hidden | Instant cryptographic **Injunction Locks** blocking transfers |
-| Overwriting spatial records on subdivision | Immutable **Spatial Lineage** with area conservation |
-| Database admins can silently alter records | **Permissioned SHA-256 Merkle Ledger** with dept signatures |
+Bhu-Rail operates as a **Digital Public Infrastructure (DPI)** following a layered, feature-oriented, and domain-driven design:
 
 ```text
-                    ┌─────────────────────────────┐
-                    │      APPLICATIONS            │
-                    │                             │
-                    │ Citizen App / Bank / Court  │
-                    │ Registrar / Municipal / AI  │
-                    └──────────────┬──────────────┘
-                                   │
-                              OPEN APIs
-                                   │
-                    ┌──────────────▼──────────────┐
-                    │       LAND DPI RAIL         │
-                    │                             │
-                    │ Parcel API                  │
-                    │ Ownership API               │
-                    │ Rights API                  │
-                    │ Transfer API                │
-                    │ Mortgage API                │
-                    │ Dispute API                 │
-                    │ Spatial API                 │
-                    │ Verification API (Land UPI) │
-                    └──────────────┬──────────────┘
-                                   │
-             ┌─────────────────────┼─────────────────────┐
-             │                     │                     │
-      ┌──────▼──────┐       ┌──────▼──────┐       ┌──────▼──────┐
-      │ LAND ASSET  │       │ RULE ENGINE │       │ WORKFLOW    │
-      │    CORE     │       │             │       │   ENGINE    │
-      └──────┬──────┘       └─────────────┘       └─────────────┘
-             │
-             ▼
-      TRUST / LEDGER LAYER (Tamper-Evident SHA-256 Audit Chain)
-             │
-             ▼
-     STATE ADAPTER NODES (Haryana Jamabandi, Karnataka Bhoomi, etc.)
+                                  ┌─────────────────────────────────┐
+                                  │       CITIZENS & END USERS      │
+                                  │   Citizen Portal • My Land      │
+                                  │   Applications • Notifications  │
+                                  └───────────────┬─────────────────┘
+                                                  │
+                ┌─────────────────────────────────┴─────────────────────────────────┐
+                │                                                                   │
+    ┌───────────▼───────────┐                           ┌───────────────────────────▼───────────────────────────┐
+    │     LAND EXPLORER     │                           │            INSTITUTIONAL INTEGRATIONS                 │
+    │ Interactive PostGIS   │                           │   Banking (Land UPI) • Sub-Registrar (SRO)            │
+    │ Cadastral Map (WGS84) │                           │   Revenue Courts (SDM) • Municipal Corp (MCG)         │
+    └───────────┬───────────┘                           └───────────────────────────┬───────────────────────────┘
+                │                                                                   │
+                └─────────────────────────────────┬─────────────────────────────────┘
+                                                  │
+                                       ┌──────────▼──────────┐
+                                       │    PARCEL 360°      │
+                                       │ 13-Tab Unified Hub  │
+                                       └──────────┬──────────┘
+                                                  │
+        ┌─────────────────────────┬───────────────┴───────────────┬─────────────────────────┐
+        │                         │                               │                         │
+ ┌──────▼──────┐           ┌──────▼──────┐                 ┌──────▼──────┐           ┌──────▼──────┐
+ │   RECORDS   │           │  PLANNING   │                 │  PROPERTY   │           │ GOVERNANCE  │
+ │ RoR (Jamab) │           │ Land Use    │                 │ PropertyTax │           │ Disputes    │
+ │ Deeds (SRO) │           │ Zoning DCR  │                 │ Utilities   │           │ Transfers   │
+ │ Encumbrance │           │ Master Plan │                 │ Feeder/Grid │           │ Subdivision │
+ │ Documents   │           │ Permissions │                 │ Receipts    │           │ Ledger      │
+ └──────┬──────┘           └──────┬──────┘                 └──────┬──────┘           └──────┬──────┘
+        │                         │                               │                         │
+        └─────────────────────────┴───────────────┬───────────────┴─────────────────────────┘
+                                                  │
+                                       ┌──────────▼──────────┐
+                                       │   OPEN API RAIL     │
+                                       │ FastAPI v1 Router   │
+                                       └──────────┬──────────┘
+                                                  │
+                         ┌────────────────────────┴────────────────────────┐
+                         │                                                 │
+                  ┌──────▼──────┐                                   ┌──────▼──────┐
+                  │ RULE ENGINE │                                   │ TRUST LEDGER│
+                  │ Pre-validat │                                   │ SHA-256     │
+                  └──────┬──────┘                                   └──────┬──────┘
+                         │                                                 │
+                         └────────────────────────┬────────────────────────┘
+                                                  │
+                                       ┌──────────▼──────────┐
+                                       │ POSTGRESQL+POSTGIS  │
+                                       │ 12-Entity Schema    │
+                                       └─────────────────────┘
 ```
+
+---
+
+## 🧭 Complete Route & Platform Sitemap
+
+| Domain | Route | Description |
+| :--- | :--- | :--- |
+| **Home** | `/` | Operational dashboard with live metrics, quick actions, alerts & GIS map |
+| **Land** | `/explorer` | Interactive GIS cadastral map with ULPIN/Survey/Owner search & filters |
+| **Land** | `/parcel/[ulpin]` | Holistic Parcel 360° profile with 13 domain tabs & Property Passport |
+| **Land** | `/my-land` | Verified citizen property holdings (Aadhaar-linked profile) |
+| **Services** | `/services` | DPI service directory (Land UPI, Mutation, Subdivision, Tax NOC) |
+| **Services** | `/services/land-upi` | **Killer Demo 3**: 1-Click Title & Collateral verification for banks |
+| **Services** | `/applications` | Real-time tracking of filed citizen applications & NOCs |
+| **Services** | `/applications/[id]` | Detailed application review stages and departmental timeline |
+| **Services** | `/requests` | Citizen service requests & grievances with interactive intake modal |
+| **Services** | `/notifications` | Notification center with filterable alerts, restrictions & reminders |
+| **Records** | `/records/ror` | Record of Rights (Jamabandi) ownership registry |
+| **Records** | `/records/registration` | Sub-Registrar conveyance deed registry (Sale, Gift, Partition) |
+| **Records** | `/records/encumbrance` | Bank mortgages, charges, and institutional liens |
+| **Records** | `/records/documents` | Digital public document repository with SHA-256 hash verification |
+| **Planning** | `/planning/land-use` | Statutory land use classifications and CLU regulations |
+| **Planning** | `/planning/zoning` | FAR schedules, maximum height limits & conforming activities |
+| **Planning** | `/planning/master-plan` | GMDA Master Plan 2031 sector overlays & buffer restrictions |
+| **Planning** | `/planning/building-permissions` | Municipal building sanction registry & architectural approvals |
+| **Property** | `/property/tax` | Municipal property tax assessments, NOCs & payment simulation |
+| **Property** | `/property/utilities` | Infrastructure dashboard (DHBVN Power, GMDA Water, Sewerage, Fiber) |
+| **Governance** | `/governance/disputes` | Revenue court civil disputes & status quo stay orders |
+| **Governance** | `/governance/transactions` | Pre-validation transaction monitoring with deterministic rule pipeline |
+| **Governance** | `/governance/fraud-prevention` | **Killer Demo 1**: Automated transfer lock on court-stayed parcels |
+| **Governance** | `/governance/subdivision` | **Killer Demo 2**: Geodesic parcel bisection & area conservation |
+| **Governance** | `/governance/ledger` | Permissioned SHA-256 cryptographic state transition audit chain |
 
 ---
 
 ## ⚡ 3 Killer Demonstrations Built-in
 
-### 1. 🛡️ Fraud Prevention via Judicial Injunction Lock
-* **Scenario:** Seller attempts to register a sale deed on a parcel that has an active court injunction (`IN-HR-GGM-KDP-0104-0000`).
-* **Result:** The Bhu-Rail Rule Engine immediately intercepts and cryptographically rejects the transfer with `RULE-JUDICIAL-INJUNCTION-ACTIVE`, citing Case `REV/COURT/SOHNA/2024/771` issued by the Revenue Court.
+### 1. 🛡️ Fraud Prevention via Judicial Injunction Lock (`/governance/fraud-prevention`)
+* **Scenario:** Seller attempts to register a conveyance sale deed on Plot 104 (`IN-HR-GGM-KDP-0104-0000`), which has an active court injunction.
+* **Result:** The Bhu-Rail Rule Engine evaluates 4 deterministic rules (Identity, Ownership, Encumbrance, Court Status) and **instantly blocks the transaction**, citing Revenue Court Case `REV/COURT/SOHNA/2024/771`.
 
-### 2. 📐 Real-Time Spatial Parcel Subdivision & Lineage
-* **Scenario:** A large 10,000 m² agricultural plot (`IN-HR-GGM-KDP-0108-0000`) is partitioned among heirs.
-* **Result:** The Spatial Engine cuts the polygon, enforces area conservation ($\sum \text{Area}_{child} = \text{Area}_{parent}$), generates child ULPINs, retires the parent asset to `SUBDIVIDED`, and registers an immutable genealogy event in the ledger.
+### 2. 📐 Spatial Parcel Subdivision & Lineage (`/governance/subdivision`)
+* **Scenario:** A 10,000 m² agricultural plot (`IN-HR-GGM-KDP-0108-0000`) is partitioned among heirs.
+* **Result:** The spatial engine executes a geodesic cut, mathematically verifies area conservation ($\sum \text{Area}_{child} = \text{Area}_{parent}$), retires the parent parcel to `SUBDIVIDED`, mints active child ULPINs, and anchors the genealogy in the ledger.
 
-### 3. 💳 "Land UPI" 1-Click Collateral Verification
-* **Scenario:** A bank loan officer or fintech platform needs to verify title status before underwriting a home loan.
-* **Result:** Calling `GET /v1/verification/title-status?ulpin=...` returns clean, instantaneous boolean verification flags (`owner_verified`, `active_mortgage`, `active_court_restriction`, `transferrable`) in sub-80ms.
+### 3. 💳 "Land UPI" 1-Click Collateral Verification (`/services/land-upi`)
+* **Scenario:** A commercial bank loan underwriter needs to verify title clearance before issuing a mortgage.
+* **Result:** Calling `GET /v1/verification/title-status?ulpin=...` returns instant boolean verification flags (`owner_verified`, `active_mortgage`, `active_court_restriction`, `transferrable`) in sub-80ms with cryptographic audit telemetry.
 
 ---
 
-## 🚀 Quickstart
+## 🚀 Running Locally
 
-### 1. Backend (FastAPI Core Rail)
+### Backend (FastAPI + PostgreSQL + PostGIS)
 
 ```bash
 cd backend
-python3 -m venv .venv
-source .venv/bin/activate
+
+# Install dependencies
 pip install -r requirements.txt
 
-# Run test suite
+# Run automated tests
 pytest tests/ -v
 
-# Start development server
-uvicorn app.main:app --reload --port 8000
+# Start FastAPI server
+python3 -m uvicorn app.main:app --reload --port 8000
 ```
 
-Interactive API documentation available at `http://localhost:8000/docs`.
+Interactive OpenAPI docs: `http://localhost:8000/docs`
 
-### 2. Frontend (DPI Explorer & Simulator Consoles)
+### Frontend (Next.js 14 + Tailwind CSS)
 
 ```bash
 cd frontend
+
+# Install dependencies
 npm install
+
+# Run TypeScript & lint verification
+npm run lint
+npm run build
+
+# Start development server
 npm run dev
 ```
 
----
-
-## 📡 Core API Specification
-
-| Method | Route | Description |
-| :--- | :--- | :--- |
-| `GET` | `/v1/parcel/{ulpin}/passport` | Machine-readable standardized Property Passport |
-| `GET` | `/v1/verification/title-status` | Instant 1-click Title Verification rail for Banks |
-| `GET` | `/v1/parcel/layers/geojson` | Live Cadastral GeoJSON layer with status styling |
-| `POST` | `/v1/transaction/transfer` | Ownership transfer with concurrency lock & rule check |
-| `POST` | `/v1/parcel/subdivide` | Geometric parcel split with parent-child lineage |
-| `POST` | `/v1/dispute/file` | Judicial dispute registration & transfer freeze |
-| `GET` | `/v1/ledger/{ulpin}/history` | Cryptographic state transition audit blocks |
-| `GET` | `/v1/ledger/verify/audit` | SHA-256 hash-chain verification & tamper check |
+Open `http://localhost:3000` to navigate the complete Bhu-Rail Land DPI.

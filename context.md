@@ -14,7 +14,7 @@
 7. [Cryptographic Trust & Permissioned Ledger Layer](#7-cryptographic-trust--permissioned-ledger-layer)
 8. [OGC Spatial Engine & Subdivision Protocol](#8-ogc-spatial-engine--subdivision-protocol)
 9. [State Cadastre Adaptation Layer](#9-state-cadastre-adaptation-layer)
-10. [The 3 Killer Hackathon Demonstrations](#10-the-3-killer-hackathon-demonstrations)
+10. [The 3 Core Platform Demonstrations](#10-the-3-core-platform-demonstrations)
 11. [Complete Technology Stack](#11-complete-technology-stack)
 12. [Open API Specification & Data Dictionary](#12-open-api-specification--data-dictionary)
 13. [Security, RBAC, and Privacy Principles](#13-security-rbac-and-privacy-principles)
@@ -345,7 +345,7 @@ $$\text{ULPIN} = \text{IN-HR-GGM-KDP-}\{murabba\text{.zfill(4)}\}\text{-}\{khasr
 
 ---
 
-## 10. The 3 Killer Hackathon Demonstrations
+## 10. The 3 Core Platform Demonstrations
 
 ### Killer Demo #1: Fraud Prevention via Judicial Injunction Freeze
 * **The Problem:** Litigants frequently sell disputed land to unsuspecting third parties while court stay petitions are pending in revenue tribunals.

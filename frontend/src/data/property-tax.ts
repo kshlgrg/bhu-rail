@@ -1,0 +1,78 @@
+import { PropertyTaxRecord } from "../types/records";
+
+export const MOCK_PROPERTY_TAX: Record<string, PropertyTaxRecord> = {
+  "IN-HR-GGM-KDP-0101-0000": {
+    tax_record_id: "TAX-MCG-2024-101",
+    ulpin: "IN-HR-GGM-KDP-0101-0000",
+    assessment_reference: "PID-HR-GGM-09921",
+    assessment_year: "2024-2025",
+    tax_status: "PAID",
+    annual_tax_amount: 12400,
+    outstanding_amount: 0,
+    last_payment_date: "2024-04-05T11:20:00Z",
+    municipal_authority: "Municipal Corporation of Gurugram (MCG)",
+    payment_history: [
+      { year: "2024-2025", amount: 12400, receipt_no: "MCG-RCT-2024-8819", paid_on: "2024-04-05", status: "SUCCESS" },
+      { year: "2023-2024", amount: 11800, receipt_no: "MCG-RCT-2023-4102", paid_on: "2023-04-12", status: "SUCCESS" },
+      { year: "2022-2023", amount: 11200, receipt_no: "MCG-RCT-2022-1920", paid_on: "2022-04-18", status: "SUCCESS" },
+    ],
+  },
+  "IN-HR-GGM-KDP-0102-0000": {
+    tax_record_id: "TAX-MCG-2024-102",
+    ulpin: "IN-HR-GGM-KDP-0102-0000",
+    assessment_reference: "PID-HR-GGM-09922",
+    assessment_year: "2024-2025",
+    tax_status: "OUTSTANDING",
+    annual_tax_amount: 38500,
+    outstanding_amount: 18500,
+    last_payment_date: "2023-11-20T14:10:00Z",
+    municipal_authority: "Municipal Corporation of Gurugram (MCG)",
+    payment_history: [
+      { year: "2024-2025 (Partial)", amount: 20000, receipt_no: "MCG-RCT-2024-1049", paid_on: "2024-05-10", status: "PARTIAL" },
+      { year: "2023-2024", amount: 36000, receipt_no: "MCG-RCT-2023-9012", paid_on: "2023-11-20", status: "SUCCESS" },
+    ],
+  },
+  "IN-HR-GGM-KDP-0103-0000": {
+    tax_record_id: "TAX-MCG-2024-103",
+    ulpin: "IN-HR-GGM-KDP-0103-0000",
+    assessment_reference: "PID-HR-GGM-09923",
+    assessment_year: "2024-2025",
+    tax_status: "PAID",
+    annual_tax_amount: 9800,
+    outstanding_amount: 0,
+    last_payment_date: "2024-03-30T09:45:00Z",
+    municipal_authority: "Municipal Corporation of Gurugram (MCG)",
+    payment_history: [
+      { year: "2024-2025", amount: 9800, receipt_no: "MCG-RCT-2024-0012", paid_on: "2024-03-30", status: "SUCCESS" },
+      { year: "2023-2024", amount: 9200, receipt_no: "MCG-RCT-2023-7182", paid_on: "2023-04-02", status: "SUCCESS" },
+    ],
+  },
+  "IN-HR-GGM-KDP-0104-0000": {
+    tax_record_id: "TAX-MCG-2024-104",
+    ulpin: "IN-HR-GGM-KDP-0104-0000",
+    assessment_reference: "PID-HR-GGM-09924",
+    assessment_year: "2024-2025",
+    tax_status: "OUTSTANDING",
+    annual_tax_amount: 4200,
+    outstanding_amount: 4200,
+    last_payment_date: "2022-09-15T00:00:00Z",
+    municipal_authority: "Municipal Corporation of Gurugram (MCG)",
+    payment_history: [
+      { year: "2022-2023", amount: 3800, receipt_no: "MCG-RCT-2022-5512", paid_on: "2022-09-15", status: "SUCCESS" },
+    ],
+  },
+  "IN-HR-GGM-KDP-0108-0000": {
+    tax_record_id: "TAX-MCG-2024-108",
+    ulpin: "IN-HR-GGM-KDP-0108-0000",
+    assessment_reference: "PID-HR-GGM-09928",
+    assessment_year: "2024-2025",
+    tax_status: "PAID",
+    annual_tax_amount: 6500,
+    outstanding_amount: 0,
+    last_payment_date: "2024-04-10T12:00:00Z",
+    municipal_authority: "Municipal Corporation of Gurugram (MCG)",
+    payment_history: [
+      { year: "2024-2025", amount: 6500, receipt_no: "MCG-RCT-2024-9912", paid_on: "2024-04-10", status: "SUCCESS" },
+    ],
+  },
+};
