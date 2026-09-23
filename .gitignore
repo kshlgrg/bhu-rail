@@ -7,14 +7,15 @@ __pycache__/
 backend/.venv/
 .venv/
 env/
+# Python build
 build/
 develop-eggs/
 dist/
 downloads/
 eggs/
 .eggs/
-lib/
-lib64/
+/lib/
+/lib64/
 parts/
 sdist/
 var/
